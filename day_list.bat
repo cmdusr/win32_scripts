@@ -2,4 +2,6 @@
 
 set str=%date%
 set str=%str:/=-%
-call nvim %str%.txt
+set str=%userprofile%/dropbox/lists/day/%str%
+
+nvim %str%.txt
