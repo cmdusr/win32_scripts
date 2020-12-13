@@ -1,4 +1,7 @@
 @echo off
-call %userprofile%\scripts\aliases.cmd
+
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
-cd %userprofile%\src
+doskey vi=nvim $*
+doskey vim=nvim $*
+doskey ls=dir $*
+doskey clear=cls $*
