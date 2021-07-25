@@ -1,6 +1,6 @@
 @echo off
 
-set file_path=%userprofile%\dropbox\lists\day
+set file_path=%userprofile%\dropbox\lists\gym
 if not exist %file_path% mkdir %file_path%
 
 for /f %%i in ('getdate.bat') do set today=%%i
