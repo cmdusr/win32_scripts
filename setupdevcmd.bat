@@ -9,12 +9,19 @@ if %ERRORLEVEL% EQU 0 exit /b 0
 rem Reset ERRORLEVEL
 type nul > nul
 
-rem Find vcvarsall.bat
-for /f "delims=" %%a in ('dir /b /s "c:\program files (x86)\microsoft visual studio\vcvarsall.bat"') do set name="%%a"
+rem Search for visual studio vcvarsall.bat
+rem Use x64 version of visual studio 2022 or later. Fall back on x86 version
+if exist "c:\program files\microsoft visual studio" (
+	for /f "delims=" %%a in ('dir /b /s "c:\program files\microsoft visual studio\vcvarsall.bat"') do set name="%%a"
+) else if exist "c:\program files (x86)\microsoft visual studio" (
+	for /f "delims=" %%a in ('dir /b /s "c:\program files (x86)\microsoft visual studio\vcvarsall.bat"') do set name="%%a"
+) else (
+	set ERRORLEVEL=1
+)
+
 if %ERRORLEVEL% NEQ 0 (
-	echo Error: Failed to find cl.exe
-	echo Failed to find vcvarsall.bat to setup devlopment environment
-	echo Requires Microsoft C++ tools
+	echo Failed to find vcvarsall.bat
+	echo Requires Microsoft C++ tools to setup development environment
 	exit /b 1
 )
 
